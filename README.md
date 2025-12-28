@@ -46,11 +46,12 @@ Distributed-Logging-System/
 ```sql
 CREATE TABLE Logs (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    timestamp DATETIME NOT NULL,
-    LogLevel NVARCHAR(50),
-    message NVARCHAR(MAX),
-    source NVARCHAR(100)
+    timestamp DATETIME DEFAULT GETDATE(),
+    LogLevel VARCHAR(10),
+    message TEXT,
+    source VARCHAR(50)
 );
+
 ```
 
 ---
