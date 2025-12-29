@@ -3,13 +3,12 @@ import random
 import time
 import socket
 from logger import Logger
-from typing import List
 
 
 class MultiUserSimulator:
     """
     Simulator representing multiple users (devices) sending logs simultaneously
-    using a unique mock IP address for each.
+    using a unique IP address for each.
     """
 
     def __init__(self, user_number: int) -> None:
@@ -17,7 +16,7 @@ class MultiUserSimulator:
         # Get the actual machine hostname
         self.base_hostname = socket.gethostname()
 
-        # Generate a unique mock IP for each user to simulate multiple devices
+        # Generate a unique IP for each user to simulate multiple devices
         # IPs will start from 192.168.1.11, 192.168.1.12, etc.
         self.ip = f"192.168.1.{10 + user_number}"
 
@@ -29,7 +28,7 @@ class MultiUserSimulator:
         self.running: bool = True
 
     def start_simulating(self) -> None:
-        """Send logs for the current user with the defined source format."""
+        """Send logs for the current user with the defined source format"""
         print(f"[Service Online] {self.device_source} is now simulating logs...")
 
         while self.running:
@@ -46,7 +45,7 @@ class MultiUserSimulator:
 
             msg = random.choice(messages[level])
 
-            # Send the log with the unique source (Mock IP)
+            # Send the log with the unique source (IP)
             self.logger.log(level, msg, self.device_source)
 
             # Random delay between messages to simulate real user activity
@@ -73,9 +72,9 @@ def run_multi_user_simulation(total_users: int = 5):
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-        print("\n[!] Stopping all simulated users...")
+        print("Stopping all simulated users...")
 
 
 if __name__ == "__main__":
-    # Simulate 5 different users or devices
+    # Simulate any num of users
     run_multi_user_simulation(20)
